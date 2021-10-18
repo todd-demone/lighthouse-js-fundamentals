@@ -1,28 +1,32 @@
 const squareCode = function(message) {
-  // console.log(message);
+  // get rid of spaces in message
   message = message.split(' ').join('');
-  // console.log(message);
-  const codedMessageArr = [];
-  let codedMessageStr = '';
+  
+  const codedMessage = [];
+  
+  // try to create a message with an equal number of rows and columns (ie square)
   const numOfCols = Math.ceil(Math.sqrt(message.length));
-  // console.log(numOfCols);
+  
   let arrIndex = 0;
+  
   for (let i = 0; i < message.length; i++) {
-    // console.log(codedMessage);
+    // all array items are prepopulated with 'undefined',
+    // so you can't use '+=' if it's the first time you're writing
+    // to an array item (you get 'undefinedc', for example)
     if (arrIndex === i) {
-      codedMessageArr[arrIndex] = message[i];
+      codedMessage[arrIndex] = message[i];
     } else {
-      codedMessageArr[arrIndex] += message[i];
+      codedMessage[arrIndex] += message[i];
     }
-    // console.log(codedMessage);
+    // move to the next array item
     if (arrIndex >= numOfCols - 1) {
       arrIndex = 0;  
     } else {
       arrIndex++;
     }
   }
-  codedMessageStr = codedMessageArr.join(' ');
-  return codedMessageStr;
+  // return a string with the columns separated by spaces
+  return codedMessage.join(' ');
   
 };
 
